@@ -1011,6 +1011,59 @@
     renderCalendar();
     updateStats();
     populateTeamSelector();
+
+    function showDemoModeAlert() {
+
+  const demoModalHTML = `
+    <div class="modal fade" id="demoModeModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-info text-white">
+            <h5 class="modal-title">
+              <i class="fa-solid fa-flask me-2"></i>Demo Mode
+            </h5>
+          </div>
+          <div class="modal-body">
+            <div class="text-center mb-3">
+              <i class="fa-solid fa-triangle-exclamation text-warning display-4"></i>
+            </div>
+            <p class="text-center mb-0">
+              You are currently in demo mode. Some features may be limited or simulated for demonstration purposes.
+            </p>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-info text-white" data-bs-dismiss="modal">
+              I Understand
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+ 
+  document.body.insertAdjacentHTML('beforeend', demoModalHTML);
+  
+  
+  setTimeout(() => {
+    const modalElement = document.getElementById('demoModeModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+    
+
+    modalElement.addEventListener('hidden.bs.modal', () => {
+      modalElement.remove();
+    });
+  }, 100);
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  showDemoModeAlert();
+});
+
+
   </script>
+  
 </body>
 </html>
